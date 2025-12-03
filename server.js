@@ -116,7 +116,10 @@ app.post("/compress", upload.single("pdf"), async (req, res) => {
     compressedSize = finalBuffer.length;
   }
 
-  const outputFileName = `${path.parse(req.file.originalname).name || "document"}_compressed_by_myworkspace.pdf`;
+  // Match Next.js route naming: keep original base name, append suffix
+  const originalName =
+    (req.file.originalname && req.file.originalname.replace(/\.pdf$/i, "")) || "document";
+  const outputFileName = `${originalName}_compressed_by_myworkspace.pdf`;
   res.setHeader("Content-Type", "application/pdf");
   res.setHeader("Content-Disposition", `attachment; filename="${outputFileName}"`);
   res.setHeader("X-Original-Size", req.file.size.toString());
