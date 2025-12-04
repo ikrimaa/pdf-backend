@@ -5,9 +5,9 @@
 
 FROM node:18-slim
 
-ENV PORT=4000
+ENV PORT=8080
 ENV GS_BIN=/usr/bin/gs
-ENV NODE_ENV=production
+ENV NODE_ENV=productiongi
 
 WORKDIR /app
 
